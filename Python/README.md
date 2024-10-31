@@ -92,4 +92,109 @@ Feel free to submit issues or pull requests if you have improvements or suggesti
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 ```
 
-This README provides an overview of your project, setup instructions, usage examples, and other relevant details. Adjust any details as needed based on your specific setup and requirements.
+OTP Email Sender
+It is a simple OTP System built for educational purpose.
+
+This Python script generates a One-Time Password (OTP), sends it via email to a list of recipients, and provides a prompt for the user to confirm the OTP. The script uses the smtplib library to send emails and a CSV file to store login credentials and recipient email addresses.
+
+Features
+
+Generates a 4-digit OTP.
+
+Sends the OTP to a list of emails provided in email_list.csv.
+
+Prompts the user to confirm the OTP.
+
+Validates the OTP entered by the user.
+
+
+Requirements
+
+Python 3.x
+
+An email account that supports SMTP (e.g., Gmail).
+
+The following Python libraries:
+
+smtplib
+
+csv
+
+email
+
+threading
+
+random
+
+
+
+Setup
+
+1. Login Credentials: Create a login.csv file in the same directory with the following format:
+
+email,password
+your_email@gmail.com,your_password
+
+Replace your_email@gmail.com and your_password with the credentials of the email account you want to use to send the OTP.
+
+
+2. Email List: Create an email_list.csv file with a list of recipient email addresses (one per line):
+
+recipient1@example.com
+recipient2@example.com
+
+
+3. Allow Less Secure Apps (if using Gmail): If you're using Gmail, you may need to allow less secure apps to send emails. Follow this link to enable it.
+
+
+
+How to Use
+
+1. Run the Script: Run the script in your terminal:
+
+python otp.py
+
+
+2. Check Email for OTP: The OTP will be sent to all emails listed in email_list.csv with the subject "Test OTP".
+
+
+3. Enter OTP: When prompted, enter the OTP sent to your email to confirm. If the OTP matches, you'll see "OTP confirmed"; otherwise, you'll see "Invalid OTP".
+
+
+
+Code Explanation
+
+generator: A lambda function that generates a random 4-digit OTP.
+
+OTP_counter: Generates an OTP and sets a timer. (You can extend it to handle OTP expiration by modifying the Timer logic.)
+
+smtp_login: Reads the email credentials from login.csv.
+
+get_emails: Reads the recipient emails from email_list.csv.
+
+send_email: Configures and sends an email with the generated OTP.
+
+confirm_otp: Prompts the user to enter the OTP and checks if it matches.
+
+main: The main function that orchestrates OTP generation, email sending, and OTP confirmation.
+
+
+Example
+
+OTP sent to emails provided at email_list.csv
+Enter OTP sent to your email: 1234
+OTP confirmed
+
+If the OTP doesn't match, it will print "Invalid OTP."
+
+Notes
+
+Email Settings: Ensure that the email service provider supports SMTP and that the SMTP server settings are correct. For Gmail, use smtp.gmail.com on port 587.
+
+Security: Avoid hardcoding sensitive information like passwords in the code. Use environment variables or secure credential storage for production.
+
+
+License
+
+This project is licensed under the MIT License.
+

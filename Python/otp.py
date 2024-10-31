@@ -48,14 +48,19 @@ def send_email(send_to,send_from,text,subject):
         print(f'failed to send email {str(e)}')
 
 def confirm_otp():
-    try:
-        user_otp = str(input('Enter OTP send to your email: '))
-        if user_otp == OTP:
-            print('OTP confirmed')
-        else:
-            print('Invalid OTP')
-    except Exception as e:
-        print(e)
+    while True:
+        try:
+            user_otp = input('Enter OTP sent to your email: ')
+            if user_otp == OTP:
+                print('OTP confirmed')
+                sys.exit()
+                break  # Exit the loop when the OTP is correct
+            
+            else:
+                print('Invalid OTP. Please try again.')
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
     
 def main():
     OTP_counter(120)
@@ -64,6 +69,5 @@ def main():
         send_email(send_to=email, send_from=smtp_login()[0], text=OTP, subject='Test OTP')
     print('OTP sent to emails provided at email_list.csv')
     confirm_otp()
-    sys.exit()
 if __name__ == '__main__':
     main()
