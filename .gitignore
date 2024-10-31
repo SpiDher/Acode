@@ -1,0 +1,8 @@
+*.csv
+.keys.csv
+.tests.py
+__pycache__/
+.post_response.csv
+.ul_response.csv
+.login.csv
+otp/
